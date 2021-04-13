@@ -1,49 +1,28 @@
-<script lang="ts">
-	import Counter from '$lib/Counter.svelte';
-</script>
-
 <svelte:head>
 	<title>Hello world!</title>
 </svelte:head>
 
-<main>
-	<h1>Hello world!</h1>
-
-	<Counter />
-
-	<p>Visit <a class="text-blue-600 underline" href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style style lang="postcss">
-	main {
-		@apply text-center;
-		@apply p-4;
-		@apply mx-auto;
-	}
-
-	h1 {
-		@apply text-red-600;
-		@apply uppercase;
-		@apply text-6xl;
-		@apply font-thin;
-		@apply leading-tight;
-		@apply my-16 mx-auto;
-		@apply max-w-xs;
-	}
-
-	p {
-		@apply max-w-xs;
-		@apply my-8 mx-auto;
-		@apply leading-snug;
-	}
-
-	@screen sm {
-		h1 {
-			@apply max-w-none;
-		}
-
-		p {
-			@apply max-w-none;
-		}
-	}
-</style>
+<div class="h-screen w-screen flex flex-row justify-center items-center space-x-32">
+	<div class="w-96 p-6 space-y-4 text-center">
+		<div class="h-40 w-40 m-auto">
+			<img src="/static/me.png" alt="" class="h-full w-full" />
+		</div>
+		<h1 class="text-4xl">Максим Тумозов</h1>
+		<p class="text-xl">Небольшой текст про меня, про то, чем занимаюсь, и про то, что это за сайт такой.</p>
+	</div>
+	<div class="w-96 space-y-6">
+		<h1 class="text-3xl text-center">Недавние статьи</h1>
+		<div class="w-full ring-4 ring-black rounded p-2 h-32">
+			<h2 class="text-2xl">Заголовок 1</h2>
+			<p>Небольшой отрывок текста...</p>
+		</div>
+		<div class="w-full ring-4 ring-black rounded p-2 h-32">
+			<h2 class="text-2xl">Заголовок 2</h2>
+			<p>Небольшой отрывок другого текста, который не связан с первым...</p>
+		</div>
+		<div class="w-full ring-4 ring-black rounded p-2 h-32">
+			<h2 class="text-2xl">Заголовок 3</h2>
+			<p>Небольшой отрывок третьего текста, который не связан с первыми двумя. Если честно, его даже не я писал.</p>
+		</div>
+	</div>
+</div>
