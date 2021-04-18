@@ -1,4 +1,8 @@
-<article class="w-full ring-4 ring-black rounded p-2 h-32 overflow-hidden">
+<script lang="ts">
+	export let small: boolean = false;
+</script>
+
+<article class="w-full h-56 p-2 overflow-hidden rounded ring-4 ring-black" class:!h-32={small}>
 	<slot name="title">
 		<h2 class="text-2xl">Стандартный заголовок статьи</h2>
 	</slot>
