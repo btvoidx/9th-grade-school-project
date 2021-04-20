@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="flex flex-row items-center justify-center space-x-32">
-	<Card pic="/static/shell_shocked.webp">
+	<Card pic="/shell_shocked.webp">
 		<h1 class="text-4xl">Максим Тумозов</h1>
 		<p class="text-xl">Небольшой текст про меня, про то, чем занимаюсь, и про то, что это за сайт такой.</p>
 	</Card>

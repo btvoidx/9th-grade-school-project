@@ -11,12 +11,10 @@
 		</ArticlePreview>
 	</a>
 
-	<a href="/articles/second-article">
-		<ArticlePreview>
-			<h2 class="text-2xl" slot="title">Заголовок 2</h2>
-			<p slot="text">Небольшой отрывок другого текста, который не связан с первым...</p>
-		</ArticlePreview>
-	</a>
+	<ArticlePreview>
+		<h2 class="text-2xl" slot="title">Заголовок 2</h2>
+		<p slot="text">Небольшой отрывок другого текста, который не связан с первым...</p>
+	</ArticlePreview>
 
 	<ArticlePreview />
 </div>
