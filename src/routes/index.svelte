@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Card from '../components/common/Card.svelte';
-	import ArticlePreview from '../components/articles/ArticlePreview.svelte';
+	import Card from '$lib/components/common/Card.svelte';
+	import ArticlePreview from '$lib/components/articles/ArticlePreview.svelte';
 </script>
 
 <svelte:head>
