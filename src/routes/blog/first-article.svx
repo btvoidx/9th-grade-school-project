@@ -3,7 +3,7 @@ title: 'Первая статья!'
 ---
 
 <script>
-	import ArticleHeader from '../../components/articles/ArticleHeader.svelte';
+	import ArticleHeader from '$lib/components/articles/ArticleHeader.svelte';
 </script>
 
 <ArticleHeader {title}/>
