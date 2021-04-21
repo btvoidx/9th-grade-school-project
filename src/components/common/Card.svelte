@@ -1,13 +1,13 @@
 <script lang="ts">
 	export let pic: string = 'default.png';
+	export let name: string = 'John Doe';
+	export let desc: string = '';
 </script>
 
-<div class="w-96 p-6 space-y-4 text-center">
-	<div class="h-40 w-40 m-auto">
-		<img src={pic} alt="" class="h-full w-full" />
+<div class="p-6 space-y-4 text-center w-96">
+	<div class="w-40 h-40 m-auto">
+		<img src={pic} alt="" class="w-full h-full" />
 	</div>
-	<slot>
-		<h1 class="text-4xl">Имя Фамилия</h1>
-		<p class="text-xl">Небольшое описание этой личности.</p>
-	</slot>
+	<h1 class="text-4xl">{name}</h1>
+	<p class="text-xl">{desc}</p>
 </div>
