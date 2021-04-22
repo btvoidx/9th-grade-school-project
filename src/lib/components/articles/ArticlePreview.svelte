@@ -4,7 +4,7 @@
 	export let content: string = 'Content preview should be here';
 </script>
 
-<article class="relative w-full p-4 overflow-hidden bg-gray-100 rounded filter drop-shadow h-60" class:!h-40={small}>
+<article class="relative w-full p-4 overflow-hidden bg-white rounded filter drop-shadow h-60" class:!h-40={small}>
 	<h2 class="mb-2 text-2xl">{title}</h2>
 	<p>{content}</p>
 	{#if !small}
