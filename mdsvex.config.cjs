@@ -4,7 +4,7 @@ module.exports = {
 		dashes: 'oldschool',
 	},
 	layout: {
-		blog: './src/routes/blog/_mdlayout.svelte',
+		// blog: './src/routes/blog/_mdlayout.svelte',
 	},
 	remarkPlugins: [
 		[
