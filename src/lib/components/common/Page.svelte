@@ -16,6 +16,6 @@
 	$: camera.set(pos);
 </script>
 
-<div class="absolute w-full h-full bg-purple-100 transform-gpu" {style} out:delay>
+<div class="absolute w-full h-full transform-gpu flex flex-col items-center justify-center" {style} out:delay>
 	<slot />
 </div>
