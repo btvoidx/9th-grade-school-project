@@ -1,22 +1,7 @@
 <script lang="ts">
-	import Card from '$lib/components/common/Card.svelte';
-	import ArticlePreview from '$lib/components/articles/ArticlePreview.svelte';
+	import Page from '$lib/components/common/Page.svelte';
 </script>
 
-<svelte:head>
-	<title>Hello world!</title>
-</svelte:head>
-
-<div class="flex flex-row items-center justify-center space-x-32">
-	<Card
-		pic="/shell_shocked.webp"
-		name="Максим Тумозов"
-		desc="Небольшой текст про меня, про то, чем занимаюсь, и про то, что это за сайт такой."
-	/>
-	<div class="space-y-6 w-96">
-		<h1 class="text-3xl text-center">Недавние статьи</h1>
-		<ArticlePreview small title="Заголовок 1" content="Небольшой отрывок текста..." />
-		<ArticlePreview small />
-		<ArticlePreview small />
-	</div>
-</div>
+<Page pos={{ x: 0, y: 0 }}>
+	<div class="flex flex-col items-center justify-center w-full h-full text-4xl bg-red-50">/</div>
+</Page>
