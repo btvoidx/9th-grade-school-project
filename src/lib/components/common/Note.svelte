@@ -52,8 +52,8 @@
 			);
 		}
 
-		console.clear();
-		console.log(borderArray);
+		// console.clear();
+		// console.log(borderArray);
 
 		return borderArray;
 	};
@@ -74,9 +74,9 @@
 </script>
 
 {#if size[0] >= 1 && size[1] >= 1}
-	<div style={noteStyle} class="note relative filter drop-shadow-md">
+	<div style={noteStyle} class="relative note filter drop-shadow-md">
 		{#each borderSprites as sprite}
-			<div class="bg-red-600 w-8 h-8 absolute" style={`top: ${sprite.y * 32}px; left: ${sprite.x * 32}px;`} />
+			<div class="absolute w-8 h-8 bg-red-600" style={`top: ${sprite.y * 32}px; left: ${sprite.x * 32}px;`} />
 		{/each}
 	</div>
 {:else}
