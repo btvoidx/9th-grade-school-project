@@ -21,6 +21,12 @@ module.exports = {
 	kit: {
 		adapter: static(),
 		target: '#app',
+		files: {
+			template: 'src/app.html',
+		},
+		paths: {
+			assets: 'static',
+		},
 		vite: {
 			ssr: {
 				noExternal: Object.keys(pkg.dependencies || {}),
