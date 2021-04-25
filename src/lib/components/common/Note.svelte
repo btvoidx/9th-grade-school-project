@@ -85,7 +85,7 @@
 	import { onMount } from 'svelte';
 
 	let self: HTMLDivElement | undefined;
-	let noteStyle = 'background: #EFE7CE; border: solid #6B6B6B 6px; border-radius: 12px; padding: 28px';
+	let noteStyle = 'background: #EFE7CE; border: solid #6B6B6B 6px; border-radius: 12px; padding: 20px';
 
 	onMount(() => {
 		let spriteSheet = new Image();
