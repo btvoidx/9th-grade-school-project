@@ -1,90 +1,111 @@
 <script lang="ts" context="module">
-	type sprites = { x: number; y: number }[];
+	import type { Dimensions } from '$lib/types';
 
-	const computeBorders = (size: Size) => {
-		let borderArray: sprites = [];
+	const spriteSize = 32;
 
-		//  Corners
-		borderArray.push(
-			{
-				x: 0,
-				y: 0,
-			},
-			{
-				x: size[0] + 1,
-				y: 0,
-			},
-			{
-				x: 0,
-				y: size[1] + 1,
-			},
-			{
-				x: size[0] + 1,
-				y: size[1] + 1,
-			}
-		);
+	enum Sprite {
+		CornerUL,
+		CornerUR,
+		CornerDL,
+		CornerDR,
+		SideU,
+		SideL,
+		SideR,
+		SideD,
+	}
 
-		// X-axis
-		for (let i = 1; i <= size[0]; i++) {
-			borderArray.push(
-				{
-					x: i,
-					y: 0,
-				},
-				{
-					x: i,
-					y: size[1] + 1,
-				}
-			);
+	const snapToSize = (num: number): number => Math.ceil(num / spriteSize) * spriteSize;
+
+	const createCanvas = (dim: Dimensions): HTMLCanvasElement => {
+		let canvas = document.createElement('canvas');
+		canvas.width = dim[0];
+		canvas.height = dim[1];
+
+		return canvas;
+	};
+
+	const getSprite = (type: Sprite, variant: number, sheetDim: Dimensions): [number, number] => {
+		if (variant === -1) {
+			variant = type > 3 ? Math.floor(Math.random() * (sheetDim[0] / spriteSize - 1)) : 0;
 		}
 
-		// Y-axis
-		for (let i = 1; i <= size[1]; i++) {
-			borderArray.push(
-				{
-					x: 0,
-					y: i,
-				},
-				{
-					x: size[0] + 1,
-					y: i,
-				}
-			);
+		let x = variant * spriteSize;
+		let y = type * spriteSize;
+
+		return [x, y];
+	};
+
+	const drawCanvas = (canvas: HTMLCanvasElement, dim: Dimensions, spriteSheet: HTMLImageElement) => {
+		let ctx = canvas.getContext('2d');
+		let sheetDim: Dimensions = [spriteSheet.width, spriteSheet.height];
+
+		const drawSprite = (sprite: Sprite, pos: [number, number], variant = -1) => {
+			ctx.drawImage(spriteSheet, ...getSprite(sprite, variant, sheetDim), spriteSize, spriteSize, ...pos, spriteSize, spriteSize);
+		};
+
+		// Corners
+		drawSprite(Sprite.CornerUL, [0, 0]);
+		drawSprite(Sprite.CornerUR, [dim[0] - spriteSize, 0]);
+		drawSprite(Sprite.CornerDL, [0, dim[1] - spriteSize]);
+		drawSprite(Sprite.CornerDR, [dim[0] - spriteSize, dim[1] - spriteSize]);
+
+		let fx = dim[0] / spriteSize - 1;
+		let fy = dim[1] / spriteSize - 1;
+
+		// X-Axis
+		for (let i = 1; i < fx; i++) {
+			drawSprite(Sprite.SideU, [i * 32, 0]);
+			drawSprite(Sprite.SideD, [i * 32, dim[1] - spriteSize]);
 		}
 
-		// console.clear();
-		// console.log(borderArray);
+		// Y-Axis
+		for (let i = 1; i < fy; i++) {
+			drawSprite(Sprite.SideL, [0, i * 32]);
+			drawSprite(Sprite.SideR, [dim[0] - spriteSize, i * 32]);
+		}
+	};
 
-		return borderArray;
+	const generateNoteStyle = (el: HTMLElement, spriteSheet: HTMLImageElement): string => {
+		let width = snapToSize(el.offsetWidth);
+		let height = snapToSize(el.offsetHeight);
+
+		let canvas = createCanvas([width, height]);
+		drawCanvas(canvas, [width, height], spriteSheet);
+
+		return `
+			width: ${width}px;
+			height: ${height}px;
+
+			background: url(${canvas.toDataURL()}) no-repeat center, #EFE7CE content-box;
+		`.replace(/[\t\n]/g, '');
 	};
 </script>
 
 <script lang="ts">
-	import type { Size } from '$lib/types';
+	import { onMount } from 'svelte';
 
-	export let size: Size = [0, 0];
-	const borders: string = 'url("/static/note_borders.png")';
+	let self: HTMLDivElement | undefined;
+	let noteStyle = 'background: #EFE7CE; border: solid #6B6B6B 6px; border-radius: 12px; padding: 28px';
 
-	$: actualSize = <Size>[size[0] + 2, size[1] + 2];
-	$: noteStyle = `
-		width: ${actualSize[0] * 32}px;
-		height: ${actualSize[1] * 32}px;
-	`.replace(/[\t\n]/g, '');
-	$: borderSprites = computeBorders(size);
+	onMount(() => {
+		let spriteSheet = new Image();
+		spriteSheet.src = '/static/note_borders.png';
+		spriteSheet.onload = () => {
+			noteStyle = generateNoteStyle(self, spriteSheet);
+		};
+	});
 </script>
 
-{#if size[0] >= 1 && size[1] >= 1}
-	<div style={noteStyle} class="relative note filter drop-shadow-md">
-		{#each borderSprites as sprite}
-			<div class="absolute w-8 h-8 bg-red-600" style={`top: ${sprite.y * 32}px; left: ${sprite.x * 32}px;`} />
-		{/each}
+{#if true}
+	<div bind:this={self} style={noteStyle} class="relative filter drop-shadow-md p-8">
+		<slot />
 	</div>
 {:else}
 	<p>Invalid note params</p>
 {/if}
 
 <style>
-	.note {
+	div {
 		image-rendering: pixelated;
 	}
 </style>
