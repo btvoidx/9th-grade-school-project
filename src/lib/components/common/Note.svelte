@@ -89,7 +89,7 @@
 
 	onMount(() => {
 		let spriteSheet = new Image();
-		spriteSheet.src = '/static/note_borders.png';
+		spriteSheet.src = '/note_borders.png';
 		spriteSheet.onload = () => {
 			noteStyle = generateNoteStyle(self, spriteSheet);
 		};
