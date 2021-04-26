@@ -91,13 +91,14 @@
 		let spriteSheet = new Image();
 		spriteSheet.src = '/note_borders.png';
 		spriteSheet.onload = () => {
+			if (!self) return;
 			noteStyle = generateNoteStyle(self, spriteSheet);
 		};
 	});
 </script>
 
 {#if true}
-	<div bind:this={self} style={noteStyle} class="relative filter drop-shadow-md p-8">
+	<div bind:this={self} style={noteStyle} class="relative p-8 filter drop-shadow-md">
 		<slot />
 	</div>
 {:else}
