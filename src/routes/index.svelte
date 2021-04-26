@@ -5,7 +5,7 @@
 
 <Page pos={{ x: 0, y: 0 }}>
 	<Note>
-		<div class="w-96 text-lg">
+		<div class="text-lg w-96">
 			<h1 class="text-5xl">Some content</h1>
 			<p>more content</p>
 			<p>big-ass note</p>
