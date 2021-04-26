@@ -43,6 +43,11 @@
 			ctx.drawImage(spriteSheet, ...getSprite(sprite, variant, sheetDim), spriteSize, spriteSize, ...pos, spriteSize, spriteSize);
 		};
 
+		const fill = (color: string, x: number, y: number, width: number, height: number) => {
+			ctx.fillStyle = color;
+			ctx.fillRect(x, y, width, height);
+		};
+
 		// Corners
 		drawSprite(Sprite.CornerUL, [0, 0]);
 		drawSprite(Sprite.CornerUR, [dim[0] - spriteSize, 0]);
@@ -63,6 +68,8 @@
 			drawSprite(Sprite.SideL, [0, i * 32]);
 			drawSprite(Sprite.SideR, [dim[0] - spriteSize, i * 32]);
 		}
+
+		fill('#EFE7CE', spriteSize, spriteSize, dim[0] - spriteSize * 2, dim[1] - spriteSize * 2);
 	};
 
 	const generateNoteStyle = (el: HTMLElement, spriteSheet: HTMLImageElement): string => {
@@ -76,7 +83,7 @@
 			width: ${width}px;
 			height: ${height}px;
 
-			background: url(${canvas.toDataURL()}) no-repeat center, #EFE7CE content-box;
+			background: url(${canvas.toDataURL()}) no-repeat center;
 		`.replace(/[\t\n]/g, '');
 	};
 </script>
