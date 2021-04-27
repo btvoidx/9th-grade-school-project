@@ -1,2 +1,0 @@
-- name: Merge Dependabot
-  uses: Elskom/merge-dependabot@v1.0
