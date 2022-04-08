@@ -10,7 +10,7 @@
 <div class="flex flex-row items-center justify-center space-x-32">
 	<Card
 		pic="/shell_shocked.webp"
-		name="Понкратов Антон"
+		name="Тумозов Максим"
 		desc="Небольшой текст про меня, про то, чем занимаюсь, и про то, что это за сайт такой."
 	/>
 	<div class="space-y-6 w-96">
